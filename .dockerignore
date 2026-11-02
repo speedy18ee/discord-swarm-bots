@@ -1,0 +1,15 @@
+node_modules
+node_modules/
+.git
+.git/
+.env
+Apo sore
+Apo sore/
+Apo sore/**
+*.dll
+*.tga
+*.log
+npm-debug.log
+login-youtube.js
+export-cookies.js
+start.bat
