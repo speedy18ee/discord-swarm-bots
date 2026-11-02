@@ -1,0 +1,32 @@
+name: Discord Bot Swarm Runner
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-swarm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Dependencies
+        run: npm ci --omit=dev
+
+      - name: Start Swarm Bots
+        run: node index.js
+        env:
+          NODE_ENV: production
+          NODE_URL: "noi6.visihost.in:25591"
+          NODE_NAME: "Lava Lenin"
+          NODE_AUTH: "ganahubkl"
+          NODE_SECURE: "false"
